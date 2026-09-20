@@ -1,3 +1,4 @@
+using PostService.DataAccess;
 using PostService.Dtos;
 using PostService.Mappings;
 using PostService.Models;
@@ -9,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddScoped<IPostingRepository, PostingRepository>();
+
 builder.Services.AddScoped<IPostingService, PostingService>();
+
 
 var app = builder.Build();
 
@@ -79,5 +83,9 @@ app.MapDelete("/postings/{id}", (int id, IPostingService postingService) =>
 
     return Results.NoContent();
 });
+
+using var scope = app.Services.CreateScope();
+var repository = (PostingRepository)scope.ServiceProvider.GetRequiredService<IPostingRepository>();
+repository.CreateDb();
 
 app.Run();

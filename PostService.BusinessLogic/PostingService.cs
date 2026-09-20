@@ -1,96 +1,53 @@
 ﻿using PostService.CommonTypes;
+using PostService.DataAccess;
 using PostService.Models;
 
 namespace PostService.Services;
 
 public class PostingService: IPostingService
 {
-    private static List<Posting> _postings = 
-        new List<Posting>
-        {
-            new Posting
-            {
-                Id = 1,
-                From = "Alice",
-                To = "Bob",
-                Content = "Books",
-                DeliveryType = DeliveryType.Courier,
-                Weight = 2.5f,
-                Width = 30,
-                Height = 20,
-                Depth = 10,
-                Value = 50.0f,
-                Price = 10.0f,
-                CreatedAt = DateTime.UtcNow
-            }
-        };
+    private readonly IPostingRepository _repository;
+    public PostingService(IPostingRepository repository)
+    {
+        _repository = repository;
+    }
 
     public Posting Create(Posting newPosting)
     {
-        var maxId = 1;
-        if (_postings.Count > 0)
-{
-            maxId = _postings.Max(p => p.Id) + 1;
-        }
-        newPosting.Id = maxId;
-
         newPosting.Price = CalculatePrice(
             newPosting.Weight,
             newPosting.DeliveryType);
 
         newPosting.CreatedAt = DateTime.UtcNow;
 
-        _postings.Add(newPosting);
+        var postingId = _repository.Create(newPosting);
+
+        newPosting.Id = postingId;
+
         return newPosting;
     }
 
-    public int Delete(int postingId)
-    {
-        var posting = Find(postingId);
+    public int Delete(int postingId) =>
+        _repository.Delete(postingId);
 
-        if (posting == null)
-        {
-            return 0;
-        }
+    public Posting? Find(int postingId) =>
+        _repository.GetById(postingId);
 
-        _postings.Remove(posting);
-
-        return 1;
-    }
-
-    public Posting? Find(int postingId)
-    {
-        var posting = _postings.FirstOrDefault(p => p.Id ==
-        postingId);
-        return posting;
-    }
-
-    public List<Posting> GetAll()
-    {
-        return _postings;
-    }
+    public List<Posting> GetAll() => 
+        _repository.GetList();
 
     public Posting? Update(Posting posting)
     {
-        var existingPosting = Find(posting.Id);
+        var existingPosting = _repository.GetById(posting.Id);
 
         if (existingPosting == null)
         {
             return null;
         }
 
-        existingPosting.From = posting.From;
-        existingPosting.To = posting.To;
-        existingPosting.Content = posting.Content;
-        existingPosting.DeliveryType = posting.DeliveryType;
-        existingPosting.Weight = posting.Weight;
-        existingPosting.Width = posting.Width;
-        existingPosting.Height = posting.Height;
-        existingPosting.Depth = posting.Depth;
-        existingPosting.Value = posting.Value;
-        existingPosting.Price = posting.Price;
+        _repository.Update(posting);
 
-        return existingPosting;
+        return posting;
     }
 
     private float CalculatePrice(float weight, DeliveryType deliveryType)
