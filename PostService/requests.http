@@ -15,12 +15,11 @@ Content-Type: application/json
   "to": "Ketrin",
   "content": "Game",
   "deliveryType": 1,
-  "weight": 2.5,
+  "weight": 2.7,
   "width": 30,
   "height": 20,
   "depth": 10,
   "value": 50,
-  "price": 10,
   "createdAt": "2026-09-20T09:58:28.8598338Z"
 }
 
@@ -37,8 +36,7 @@ Content-Type: application/json
     "height": 20,
     "depth": 10,
     "value": 50,
-    "price": 10,
-    "createdAt": "2026-09-20T09:58:28.8598338Z"
+    "price": 10
 }
 
 ### Delete posting by id
