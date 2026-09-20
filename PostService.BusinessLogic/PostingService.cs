@@ -1,4 +1,5 @@
-﻿using PostService.Models;
+﻿using PostService.CommonTypes;
+using PostService.Models;
 
 namespace PostService.Services;
 

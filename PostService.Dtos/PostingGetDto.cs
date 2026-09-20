@@ -1,4 +1,4 @@
-﻿using PostService.Models;
+﻿using PostService.CommonTypes;
 
 namespace PostService.Dtos
 {

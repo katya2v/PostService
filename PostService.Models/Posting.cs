@@ -1,4 +1,6 @@
-﻿namespace PostService.Models;
+﻿using PostService.CommonTypes;
+
+namespace PostService.Models;
 
 public class Posting
 {
