@@ -1,0 +1,48 @@
+### Get all postings 
+GET http://localhost:5085/postings
+
+### Get posting by id
+GET http://localhost:5085/postings/1
+
+### Get error posting by id
+GET http://localhost:5085/postings/1050
+
+### Create new posting
+POST http://localhost:5085/postings
+Content-Type: application/json
+{
+  "from": "Artur",
+  "to": "Ketrin",
+  "content": "Game",
+  "deliveryType": 1,
+  "weight": 2.5,
+  "width": 30,
+  "height": 20,
+  "depth": 10,
+  "value": 50,
+  "price": 10,
+  "createdAt": "2026-09-20T09:58:28.8598338Z"
+}
+
+### Update posting by id
+PUT http://localhost:5085/postings/1
+Content-Type: application/json
+{
+    "from": "Bob",
+    "to": "Bob 2",
+    "content": "Books",
+    "deliveryType": 2,
+    "weight": 2.5,
+    "width": 30,
+    "height": 20,
+    "depth": 10,
+    "value": 50,
+    "price": 10,
+    "createdAt": "2026-09-20T09:58:28.8598338Z"
+}
+
+### Delete posting by id
+DELETE http://localhost:5085/postings/1
+
+### Delete deleted posting by id
+DELETE http://localhost:5085/postings/1
