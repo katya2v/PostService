@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f9f8">
+  <title>Відправлення — Пошта</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Пошта — головна"><span class="brand-mark" aria-hidden="true">П</span><span><strong>пошта</strong><small>облік відправлень</small></span></a>
+    <nav class="main-nav" aria-label="Головна навігація"><a class="nav-link" href="index.html">Головна</a><a class="nav-link active" href="postings.html">Відправлення</a><a class="nav-link" href="about.html">Про програму</a></nav>
+    <a class="header-action" href="editor.html"><span aria-hidden="true">＋</span> Нове відправлення</a>
+  </header>
+  <main class="page-shell postings-page">
+    <div class="page-heading"><div><h1>Відправлення</h1><p>Переглядайте записи та керуйте поштовими відправленнями.</p></div><a class="button button-primary" href="editor.html"><span>＋</span> Створити відправлення</a></div>
+    <section class="list-card">
+      <div class="list-toolbar"><div><h2>Усі відправлення</h2><p id="list-count">Завантаження записів…</p></div></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="table-wrap"><table class="postings-table"><thead><tr><th>№ ВІДПРАВЛЕННЯ</th><th>ОТРИМУВАЧ</th><th>ВМІСТ</th><th>ДОСТАВКА</th><th>ВАГА</th><th>ЦІННІСТЬ</th><th>ДАТА СТВОРЕННЯ</th><th><span class="sr-only">Дії</span></th></tr></thead><tbody id="postings-body"><tr><td colspan="8"><div class="table-loading"><span class="spinner"></span> Завантажуємо відправлення…</div></td></tr></tbody></table></div>
+      <div class="list-footer"><span id="list-footer-count">—</span><span class="api-indicator"><i></i> PostService API</span></div>
+    </section>
+    <footer class="site-footer"><span>© <span data-year></span> Облік поштових відправлень</span><a href="about.html">Про програму</a></footer>
+  </main>
+  <script src="app.js"></script>
+  <script src="postings.js"></script>
+</body>
+</html>

@@ -14,10 +14,15 @@ builder.Services.AddScoped<IPostingRepository, PostingRepository>();
 
 builder.Services.AddScoped<IPostingService, PostingService>();
 
+builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy =>
+    policy.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("AllowAll");
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

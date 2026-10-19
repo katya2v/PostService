@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f9f8">
+  <title>Нове відправлення — Пошта</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Пошта — головна"><span class="brand-mark" aria-hidden="true">П</span><span><strong>пошта</strong><small>облік відправлень</small></span></a>
+    <nav class="main-nav" aria-label="Головна навігація"><a class="nav-link" href="index.html">Головна</a><a class="nav-link active" href="postings.html">Відправлення</a><a class="nav-link" href="about.html">Про програму</a></nav>
+    <a class="header-action" href="postings.html">← До списку</a>
+  </header>
+  <main class="page-shell editor-page">
+    <div class="editor-heading"><a class="back-link" href="postings.html"><span aria-hidden="true">←</span> Усі відправлення</a><h1 id="page-title">Нове відправлення</h1><p id="page-description">Заповніть основні дані, щоб оформити посилку.</p></div>
+    <form id="posting-form" class="editor-form-card" novalidate>
+      <div id="form-notice" class="form-notice" role="alert" hidden></div>
+      <section class="form-section"><div class="section-intro"><span class="section-number">01</span><div><h2>Відправник</h2><p>Хто відправляє посилку</p></div></div><div class="section-fields"><label class="field"><span>ПІБ / Назва організації <b>*</b></span><input name="from" maxlength="120" autocomplete="name" placeholder="Наприклад, Анна Мельник" required><small class="field-error"></small></label></div></section>
+      <section class="form-section"><div class="section-intro"><span class="section-number">02</span><div><h2>Отримувач</h2><p>Кому доставити посилку</p></div></div><div class="section-fields"><label class="field"><span>ПІБ / Назва організації <b>*</b></span><input name="to" maxlength="120" placeholder="Наприклад, Олена Коваль" required><small class="field-error"></small></label></div></section>
+      <section class="form-section parcel-form-section"><div class="section-intro"><span class="section-number">03</span><div><h2>Відправлення</h2><p>Параметри та вартість</p></div></div><div class="section-fields parcel-fields">
+        <label class="field full-width"><span>Вміст відправлення <b>*</b></span><textarea name="content" rows="2" maxlength="240" placeholder="Опишіть вміст" required></textarea><small class="field-error"></small></label>
+        <label class="field"><span>Тип доставки <b>*</b></span><select name="deliveryType" required><option value="">Оберіть тип</option><option value="0">Відділення</option><option value="1">Кур'єр</option><option value="2">Експрес-кур'єр</option></select><small class="field-error"></small></label>
+        <label class="field"><span>Вага, кг <b>*</b></span><input name="weight" type="number" min="0.01" max="1000" step="0.01" placeholder="0,00" required><small class="field-error"></small></label>
+        <label class="field"><span>Довжина, см <b>*</b></span><input name="depth" type="number" min="1" max="10000" step="1" placeholder="0" required><small class="field-error"></small></label>
+        <label class="field"><span>Ширина, см <b>*</b></span><input name="width" type="number" min="1" max="10000" step="1" placeholder="0" required><small class="field-error"></small></label>
+        <label class="field"><span>Висота, см <b>*</b></span><input name="height" type="number" min="1" max="10000" step="1" placeholder="0" required><small class="field-error"></small></label>
+        <label class="field"><span>Оголошена цінність, ₴</span><input name="value" type="number" min="0" max="10000000" step="0.01" placeholder="0,00"><small class="field-error"></small></label>
+        <label class="field edit-only" hidden><span>Вартість доставки, ₴</span><input name="price" type="number" min="0" max="10000000" step="0.01" placeholder="0,00"><small class="field-error"></small></label>
+      </div></section>
+      <div class="editor-form-footer"><span class="required-hint"><b>*</b> Обов'язкові поля</span><div><a class="button button-quiet" href="postings.html">Скасувати</a><button id="save-posting" class="button button-primary" type="submit">Створити відправлення <span aria-hidden="true">→</span></button></div></div>
+    </form>
+    <footer class="site-footer"><span>© <span data-year></span> Облік поштових відправлень</span><a href="about.html">Про програму</a></footer>
+  </main>
+  <script src="app.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>

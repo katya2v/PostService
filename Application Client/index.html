@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f9f8">
+  <title>Пошта — Облік відправлень</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Пошта — головна">
+      <span class="brand-mark" aria-hidden="true">П</span>
+      <span><strong>пошта</strong><small>облік відправлень</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Головна навігація">
+      <a class="nav-link active" href="index.html">Головна</a>
+      <a class="nav-link" href="postings.html">Відправлення</a>
+      <a class="nav-link" href="about.html">Про програму</a>
+    </nav>
+    <a class="header-action" href="postings.html"><span aria-hidden="true">＋</span> Нове відправлення</a>
+  </header>
+
+  <main class="home-page page-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <span class="eyebrow"><i></i> ПРОСТО. ЗРУЧНО. ВЧАСНО.</span>
+        <h1>Кожне відправлення<br><span>під контролем.</span></h1>
+        <p>Єдиний простір для обліку посилок: створюйте відправлення, перевіряйте деталі та швидко знаходьте потрібні записи.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="postings.html">До відправлень <span aria-hidden="true">→</span></a>
+          <a class="button button-quiet" href="about.html">Дізнатись про програму</a>
+        </div>
+        <div class="hero-footnote"><span class="footnote-icon">✓</span> Усі дані синхронізуються з PostService API</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-dot dot-one"></div><div class="art-dot dot-two"></div>
+        <div class="parcel-box"><div class="box-top"></div><div class="box-front"><span class="box-tape"></span><span class="box-stamp">PS</span></div><div class="box-side"></div></div>
+        <div class="floating-card card-top"><span class="mini-icon">↗</span><span><b>Відправлення</b><small>усе на своєму місці</small></span></div>
+        <div class="floating-card card-bottom"><span class="pulse-dot"></span><span><b>PostService</b><small>підключення до API</small></span><span class="live-tag">API</span></div>
+      </div>
+    </section>
+
+    <section class="home-highlights" aria-label="Можливості програми">
+      <article class="highlight-card"><span class="highlight-icon mint">▤</span><div><h2>Усі записи разом</h2><p>Список відправлень з основними параметрами та швидким пошуком.</p></div><a href="postings.html" aria-label="Перейти до списку">↗</a></article>
+      <article class="highlight-card"><span class="highlight-icon blue">＋</span><div><h2>Швидке оформлення</h2><p>Створюйте та редагуйте відправлення в одній зрозумілій формі.</p></div><a href="postings.html" aria-label="Створити відправлення">↗</a></article>
+      <article class="highlight-card"><span class="highlight-icon sand">⌁</span><div><h2>Зрозумілі дані</h2><p>Тип доставки, вага, габарити та оголошена цінність під рукою.</p></div><a href="about.html" aria-label="Про програму">↗</a></article>
+    </section>
+    <footer class="site-footer"><span>© <span data-year></span> Облік поштових відправлень</span><a href="about.html">Про програму</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

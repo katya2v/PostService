@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f9f8">
+  <title>Про програму — Пошта</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Пошта — головна"><span class="brand-mark" aria-hidden="true">П</span><span><strong>пошта</strong><small>облік відправлень</small></span></a>
+    <nav class="main-nav" aria-label="Головна навігація"><a class="nav-link" href="index.html">Головна</a><a class="nav-link" href="postings.html">Відправлення</a><a class="nav-link active" href="about.html">Про програму</a></nav>
+    <a class="header-action" href="postings.html"><span aria-hidden="true">＋</span> Нове відправлення</a>
+  </header>
+  <main class="page-shell about-page">
+    <div class="page-heading"><div><span class="eyebrow"><i></i> ІНФОРМАЦІЯ</span><h1>Про програму</h1><p>Облік поштових відправлень — вебклієнт для щоденної роботи з посилками.</p></div><a class="button button-primary" href="postings.html">Відкрити відправлення <span>→</span></a></div>
+    <section class="about-layout">
+      <article class="about-main-card">
+        <div class="about-symbol">П</div>
+        <h2>Відправлення —<br><span>без зайвого клопоту.</span></h2>
+        <p>Застосунок допомагає вести облік поштових відправлень в одному місці. Переглядайте записи, додавайте нові, оновлюйте параметри та видаляйте непотрібні.</p>
+        <div class="about-version"><span class="pulse-dot"></span> Вебклієнт PostService <span class="version-chip">1.0</span></div>
+      </article>
+      <div class="about-side">
+        <article class="info-card"><span class="info-card-icon">01</span><div><h3>Керування записами</h3><p>Створення, перегляд, редагування та видалення відправлень.</p></div></article>
+        <article class="info-card"><span class="info-card-icon">02</span><div><h3>Параметри посилки</h3><p>Тип доставки, вага, габарити, оголошена цінність і вартість.</p></div></article>
+        <article class="info-card"><span class="info-card-icon">03</span><div><h3>Інтеграція з API</h3><p>Дані завантажуються та зберігаються через REST API PostService.</p></div></article>
+      </div>
+    </section>
+    <section class="about-note"><span class="note-icon">i</span><p>Для роботи застосунку запустіть API PostService. Докладні інструкції з запуску клієнта містяться у файлі README.</p></section>
+    <footer class="site-footer"><span>© <span data-year></span> Облік поштових відправлень</span><a href="index.html">На головну</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
