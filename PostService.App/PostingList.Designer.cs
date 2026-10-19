@@ -28,79 +28,136 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            gridPostings = new DataGridView();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            dgvShipments = new DataGridView();
             btnDelete = new Button();
             btnRefresh = new Button();
-            ((System.ComponentModel.ISupportInitialize)gridPostings).BeginInit();
+            btnCreate = new Button();
+            btnEdit = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvShipments).BeginInit();
             SuspendLayout();
-            //
-            // gridPostings
-            //
-            gridPostings.AllowUserToAddRows = false;
-            gridPostings.AllowUserToDeleteRows = false;
-            gridPostings.AutoGenerateColumns = false;
-            gridPostings.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gridPostings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPostings.Columns.AddRange(
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Ідентифікатор", Name = "colId", Visible = false },
-                new DataGridViewTextBoxColumn { DataPropertyName = "From", HeaderText = "Відправник", Name = "colFrom" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "To", HeaderText = "Одержувач", Name = "colTo" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Content", HeaderText = "Вміст", Name = "colContent" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "DeliveryType", HeaderText = "Тип доставки", Name = "colDeliveryType" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Weight", HeaderText = "Вага", Name = "colWeight" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Width", HeaderText = "Ширина", Name = "colWidth" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Height", HeaderText = "Висота", Name = "colHeight" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Depth", HeaderText = "Глибина", Name = "colDepth" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Value", HeaderText = "Оголошена вартість", Name = "colValue" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Price", HeaderText = "Ціна доставки", Name = "colPrice" },
-                new DataGridViewTextBoxColumn { DataPropertyName = "CreatedAt", HeaderText = "Дата створення", Name = "colCreatedAt", Visible = false });
-            gridPostings.Location = new Point(12, 12);
-            gridPostings.MultiSelect = false;
-            gridPostings.Name = "gridPostings";
-            gridPostings.ReadOnly = true;
-            gridPostings.RowHeadersWidth = 51;
-            gridPostings.RowTemplate.Height = 29;
-            gridPostings.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridPostings.Size = new Size(776, 380);
-            //
+            // 
+            // dgvShipments
+            // 
+            dgvShipments.AllowUserToAddRows = false;
+            dgvShipments.AllowUserToDeleteRows = false;
+            dgvShipments.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvShipments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvShipments.BackgroundColor = Color.FromArgb(246, 249, 248);
+            dgvShipments.BorderStyle = BorderStyle.None;
+            dgvShipments.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvShipments.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvShipments.ColumnHeadersHeight = 48;
+            dgvShipments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.PaleGreen;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvShipments.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvShipments.EnableHeadersVisualStyles = false;
+            dgvShipments.GridColor = Color.FromArgb(228, 236, 234);
+            dgvShipments.Location = new Point(12, 12);
+            dgvShipments.MultiSelect = false;
+            dgvShipments.Name = "dgvShipments";
+            dgvShipments.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightGreen;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvShipments.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvShipments.RowHeadersVisible = false;
+            dgvShipments.RowHeadersWidth = 51;
+            dgvShipments.RowTemplate.Height = 61;
+            dgvShipments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvShipments.Size = new Size(776, 380);
+            dgvShipments.TabIndex = 0;
+            // 
             // btnDelete
-            //
+            // 
             btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDelete.BackColor = Color.FromArgb(246, 249, 248);
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.ForeColor = Color.FromArgb(0, 92, 82);
             btnDelete.Location = new Point(12, 405);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(120, 33);
+            btnDelete.TabIndex = 1;
             btnDelete.Text = "Видалити";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
-            //
+            // 
             // btnRefresh
-            //
+            // 
             btnRefresh.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRefresh.BackColor = Color.FromArgb(231, 244, 240);
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.ForeColor = Color.FromArgb(0, 119, 105);
             btnRefresh.Location = new Point(668, 405);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(120, 33);
+            btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Оновити";
-            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.UseVisualStyleBackColor = false;
             btnRefresh.Click += btnRefresh_Click;
-            //
+            // 
+            // btnCreate
+            // 
+            btnCreate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCreate.BackColor = Color.FromArgb(0, 119, 105);
+            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.ForeColor = Color.White;
+            btnCreate.Location = new Point(148, 405);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(120, 33);
+            btnCreate.TabIndex = 3;
+            btnCreate.Text = "Створити";
+            btnCreate.UseVisualStyleBackColor = false;
+            btnCreate.Click += btnCreate_Click;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEdit.BackColor = Color.FromArgb(231, 244, 240);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.ForeColor = Color.FromArgb(0, 119, 105);
+            btnEdit.Location = new Point(278, 405);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(120, 33);
+            btnEdit.TabIndex = 4;
+            btnEdit.Text = "Редагувати";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
             // PostingList
-            //
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(246, 249, 248);
             ClientSize = new Size(800, 450);
-            Controls.Add(gridPostings);
+            Controls.Add(dgvShipments);
             Controls.Add(btnDelete);
             Controls.Add(btnRefresh);
+            Controls.Add(btnCreate);
+            Controls.Add(btnEdit);
             Name = "PostingList";
             Text = "Відправлення";
             Load += PostingList_Load;
-            ((System.ComponentModel.ISupportInitialize)gridPostings).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvShipments).EndInit();
             ResumeLayout(false);
         }
 
-        private DataGridView gridPostings;
+        private DataGridView dgvShipments;
         private Button btnDelete;
         private Button btnRefresh;
+        private Button btnCreate;
+        private Button btnEdit;
 
         #endregion
     }
