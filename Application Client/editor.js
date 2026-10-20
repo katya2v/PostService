@@ -50,6 +50,13 @@
     clearNotice();
   }
 
+  function clearFieldError(input) {
+    const field = input.closest(".field");
+    field.classList.remove("invalid");
+    field.querySelector(".field-error").textContent = "";
+    input.removeAttribute("aria-invalid");
+  }
+
   function setFieldError(input, message) {
     const field = input.closest(".field");
     field.classList.add("invalid");
@@ -57,33 +64,53 @@
     input.setAttribute("aria-invalid", "true");
   }
 
+  function validateField(input) {
+    const name = input.name;
+    const value = input.value;
+    let message = "";
+
+    if (input.closest(".field").hidden) {
+      clearFieldError(input);
+      return true;
+    }
+
+    if (["from", "to", "content"].includes(name)) {
+      if (!value.trim()) message = name === "from" ? "Вкажіть відправника." : name === "to" ? "Вкажіть отримувача." : "Вкажіть вміст відправлення.";
+    } else if (name === "deliveryType") {
+      if (!["0", "1", "2"].includes(value)) message = "Оберіть тип доставки.";
+    } else if (name === "weight") {
+      const weight = Number(value);
+      if (!value || weight < 0.01 || weight > 1000 || !Number.isInteger(weight * 100)) {
+        message = "Вага має бути від 0,01 до 1 000 кг.";
+      }
+    } else if (["depth", "width", "height"].includes(name)) {
+      const dimension = Number(value);
+      if (!value || !Number.isInteger(dimension) || dimension < 1 || dimension > 10000) {
+        const label = name === "depth" ? "Довжина" : name === "width" ? "Ширина" : "Висота";
+        message = `${label} має бути від 1 до 10 000 см.`;
+      }
+    } else if (["value", "price"].includes(name) && value) {
+      const amount = Number(value);
+      if (!Number.isFinite(amount) || amount < 0 || amount > 10000000 || !Number.isInteger(amount * 100)) {
+        message = "Вкажіть суму від 0 до 10 000 000 грн (до 2 знаків після коми).";
+      }
+    }
+
+    if (message) {
+      setFieldError(input, message);
+      return false;
+    }
+
+    clearFieldError(input);
+    return true;
+  }
+
   function validateForm() {
     clearValidation();
     let firstInvalid = null;
-    const requireValue = (name, message, isValid = (value) => value.trim() !== "") => {
-      const input = form.elements.namedItem(name);
-      if (!isValid(input.value)) {
-        setFieldError(input, message);
-        firstInvalid ??= input;
-      }
-    };
-
-    requireValue("from", "Вкажіть відправника.");
-    requireValue("to", "Вкажіть отримувача.");
-    requireValue("content", "Вкажіть вміст відправлення.");
-    requireValue("deliveryType", "Оберіть тип доставки.", (value) => ["0", "1", "2"].includes(value));
-    requireValue("weight", "Вага має бути від 0,01 до 1 000 кг.", (value) => Number(value) >= 0.01 && Number(value) <= 1000 && Number.isInteger(Number(value) * 100));
-    for (const [name, label] of [["depth", "Довжина"], ["width", "Ширина"], ["height", "Висота"]]) {
-      requireValue(name, `${label} має бути від 1 до 10 000 см.`, (value) => Number.isInteger(Number(value)) && Number(value) >= 1 && Number(value) <= 10000);
-    }
-    for (const name of ["value", "price"]) {
-      const input = form.elements.namedItem(name);
-      if (input.closest(".field").hidden || !input.value) continue;
-      if (!Number.isFinite(Number(input.value)) || Number(input.value) < 0 || Number(input.value) > 10000000 || !Number.isInteger(Number(input.value) * 100)) {
-        setFieldError(input, "Вкажіть суму від 0 до 10 000 000 грн (до 2 знаків після коми).");
-        firstInvalid ??= input;
-      }
-    }
+    form.querySelectorAll("input,textarea,select").forEach((input) => {
+      if (!validateField(input)) firstInvalid ??= input;
+    });
 
     firstInvalid?.focus();
     return firstInvalid === null;
@@ -167,12 +194,13 @@
     }
   }
 
-  form.querySelectorAll("input,textarea,select").forEach((input) => input.addEventListener(input.tagName === "SELECT" ? "change" : "input", () => {
-    if (!input.closest(".field").classList.contains("invalid")) return;
-    input.closest(".field").classList.remove("invalid");
-    input.closest(".field").querySelector(".field-error").textContent = "";
-    input.removeAttribute("aria-invalid");
-  }));
+  form.querySelectorAll("input,textarea,select").forEach((input) => {
+    input.addEventListener("change", () => validateField(input));
+    input.addEventListener("input", () => {
+      clearFieldError(input);
+      clearNotice();
+    });
+  });
   form.addEventListener("submit", savePosting);
 
   if (!isEditing) editOnly.forEach((field) => { field.hidden = true; });
